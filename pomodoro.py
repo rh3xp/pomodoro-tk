@@ -7,7 +7,6 @@ from tkinter import messagebox
 main = Tk()
 main.title('Pomodoro Clock')
 main.geometry("300x200")
-main.option_add('*Dialog.msg.width', 20)
 
 #def startPomo():
 #    global timeProvided
@@ -15,11 +14,24 @@ main.option_add('*Dialog.msg.width', 20)
     #print("Pomodoro Clock " + timeProvided)
 #    lbl.config(text='Time provided: '+ timeProvided)
 
+
+#main.option_add('*Dialog.msg.width', 20)
+#def popupMessage():
+#    global totalTime
+#    totalTime = time.get()
+#    output = messagebox
+#    msg = output.showinfo( "Pomodoro Clock", totalTime)
+
+
+WELCOME_DURATION = 5000
 def popupMessage():
     global totalTime
     totalTime = time.get()
-    output = messagebox
-    msg = output.showinfo( "Pomodoro Clock", totalTime)
+    top = Toplevel()
+    top.title('Pomodoro Clock')
+    Message(top, text=totalTime, padx=70, pady=70).pack()
+    top.after(WELCOME_DURATION, top.destroy)
+
 
 timeLabel = Label(main, text = "Enter time")
 timeLabel.pack()
